@@ -1,0 +1,30 @@
+pluginManagement {
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+include ':launcher', ':unityLibrary'
+**INCLUDES**
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        google()
+        mavenCentral()
+// Android Resolver Repos Start
+        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
+        maven {
+            url "https://artifactory.appodeal.com/appodeal-beta-public" // Assets/Appodeal/Editor/NetworkConfigs/AdjustDependencies.xml:14, Assets/Appodeal/Editor/NetworkConfigs/AmazonDependencies.xml:16, Assets/Appodeal/Editor/NetworkConfigs/AppLovinDependencies.xml:12, Assets/Appodeal/Editor/NetworkConfigs/AppLovinMAXDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/AppodealDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/AppsFlyerDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/BidMachineDependencies.xml:13, Assets/Appodeal/Editor/NetworkConfigs/BidonDependencies.xml:11, Assets/Appodeal/Editor/NetworkConfigs/BigoAdsDependencies.xml:12, Assets/Appodeal/Editor/NetworkConfigs/CriteoDependencies.xml:12, Assets/Appodeal/Editor/NetworkConfigs/DTExchangeDependencies.xml:14, Assets/Appodeal/Editor/NetworkConfigs/FirebaseDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/GoogleAdMobDependencies.xml:18, Assets/Appodeal/Editor/NetworkConfigs/IABDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/InMobiDependencies.xml:14, Assets/Appodeal/Editor/NetworkConfigs/IronSourceDependencies.xml:12, Assets/Appodeal/Editor/NetworkConfigs/MetaAudienceNetworkDependencies.xml:16, Assets/Appodeal/Editor/NetworkConfigs/MetaDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/MintegralDependencies.xml:16, Assets/Appodeal/Editor/NetworkConfigs/MyTargetDependencies.xml:14, Assets/Appodeal/Editor/NetworkConfigs/PangleDependencies.xml:12, Assets/Appodeal/Editor/NetworkConfigs/SentryDependencies.xml:10, Assets/Appodeal/Editor/NetworkConfigs/TapjoyDependencies.xml:12, Assets/Appodeal/Editor/NetworkConfigs/UnityDependencies.xml:14, Assets/Appodeal/Editor/NetworkConfigs/VungleDependencies.xml:16, Assets/Appodeal/Editor/NetworkConfigs/YandexDependencies.xml:12
+        }
+        mavenLocal()
+// Android Resolver Repos End
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+    }
+}
